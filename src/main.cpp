@@ -1,8 +1,9 @@
-#include "controllers/computer_club_controller.h"
+#include "controllers/computer_club_factory.h"
 #include "utils/file_reader.h"
 #include "views/output_formatter.h"
 #include "utils/exceptions.h"
 #include <iostream>
+#include <memory>
 
 using namespace computer_club;
 
@@ -18,11 +19,11 @@ int main(int argc, char* argv[]) {
         models::ClubConfiguration config = fileReader.readConfiguration();
         std::vector<models::Event> inputEvents = fileReader.readEvents();
         
-        controllers::ComputerClubController controller(config);
-        controller.processEvents(inputEvents);
-        controller.closeClub();
+        auto controller = controllers::ComputerClubControllerFactory::create(config);
+        controller->processEvents(inputEvents);
+        controller->closeClub();
         
-        views::OutputFormatter formatter(controller);
+        views::OutputFormatter formatter(*controller);
         formatter.printResults(std::cout);
         
         return 0;

@@ -69,7 +69,7 @@ std::vector<std::shared_ptr<models::Table>> ComputerClubController::getTables() 
     return tableManager_->getAllTables();
 }
 
-bool ComputerClubController::isOpenAt(const models::Time& time) const {
+bool ComputerClubController::isOpenAt(const models::Time& time) const noexcept{
     return time >= config_.getOpenTime() && time <= config_.getCloseTime();
 }
 

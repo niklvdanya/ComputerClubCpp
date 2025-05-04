@@ -1,30 +1,34 @@
 #pragma once
 
+#include "controllers/i_computer_club_controller.h"
 #include "models/club_configuration.h"
-#include "models/event.h"
 #include "services/billing_service.h"
 #include "services/client_manager.h"
 #include "services/event_manager.h"
 #include "services/queue_manager.h"
 #include "services/table_manager.h"
 #include <memory>
-#include <string>
-#include <vector>
 
 namespace computer_club {
 namespace controllers {
 
-class ComputerClubController {
+class ComputerClubController : public IComputerClubController {
 public:
     explicit ComputerClubController(const models::ClubConfiguration& config);
+    ~ComputerClubController() override = default;
+
+    ComputerClubController(const ComputerClubController&) = delete;
+    ComputerClubController& operator=(const ComputerClubController&) = delete;
+    ComputerClubController(ComputerClubController&&) = default;
+    ComputerClubController& operator=(ComputerClubController&&) = default;
     
-    void processEvents(const std::vector<models::Event>& inputEvents);
-    void processEvent(const models::Event& event);
-    void closeClub();
+    void processEvents(const std::vector<models::Event>& inputEvents) override;
+    void processEvent(const models::Event& event) override;
+    void closeClub() override;
     
-    std::vector<models::Event> getEvents() const;
-    models::ClubConfiguration getConfiguration() const;
-    std::vector<std::shared_ptr<models::Table>> getTables() const;
+    std::vector<models::Event> getEvents() const override;
+    models::ClubConfiguration getConfiguration() const override;
+    std::vector<std::shared_ptr<models::Table>> getTables() const override;
     
 private:
     models::ClubConfiguration config_;
@@ -34,7 +38,7 @@ private:
     std::unique_ptr<services::QueueManager> queueManager_;
     std::unique_ptr<services::BillingService> billingService_;
     
-    bool isOpenAt(const models::Time& time) const;
+    bool isOpenAt(const models::Time& time) const noexcept;
     void handleClientArrival(const models::Event& event);
     void handleClientSitting(const models::Event& event);
     void handleClientWaiting(const models::Event& event);

@@ -15,10 +15,10 @@ public:
     
     std::string toString() const;
     
-    bool operator<(const Time& other) const;
-    bool operator==(const Time& other) const;
-    bool operator<=(const Time& other) const;
-    bool operator>=(const Time& other) const;
+    bool operator<(const Time& other) const noexcept;
+    bool operator==(const Time& other) const noexcept;
+    bool operator<=(const Time& other) const noexcept;
+    bool operator>=(const Time& other) const noexcept;
     
     int diffInMinutes(const Time& other) const;
     Time addMinutes(int mins) const;

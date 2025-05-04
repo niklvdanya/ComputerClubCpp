@@ -3,9 +3,9 @@
 namespace computer_club {
 namespace views {
 
-OutputFormatter::OutputFormatter(const controllers::ComputerClubController& controller)
+OutputFormatter::OutputFormatter(const controllers::IComputerClubController& controller)
     : controller_(controller) {}
-
+    
 void OutputFormatter::printResults(std::ostream& out) const {
     const auto& config = controller_.getConfiguration();
     const auto& events = controller_.getEvents();

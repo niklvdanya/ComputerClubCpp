@@ -36,26 +36,26 @@ std::string Time::toString() const {
     return oss.str();
 }
 
-bool Time::operator<(const Time& other) const {
+bool Time::operator<(const Time& other) const noexcept{
     if (hours_ != other.hours_) {
         return hours_ < other.hours_;
     }
     return minutes_ < other.minutes_;
 }
 
-bool Time::operator==(const Time& other) const {
+bool Time::operator==(const Time& other) const noexcept{
     return hours_ == other.hours_ && minutes_ == other.minutes_;
 }
 
-bool Time::operator<=(const Time& other) const {
+bool Time::operator<=(const Time& other) const noexcept{
     return *this < other || *this == other;
 }
 
-bool Time::operator>=(const Time& other) const {
+bool Time::operator>=(const Time& other) const noexcept{
     return !(*this < other);
 }
 
-int Time::diffInMinutes(const Time& other) const {
+int Time::diffInMinutes(const Time& other) const{
     return (hours_ - other.hours_) * 60 + (minutes_ - other.minutes_);
 }
 

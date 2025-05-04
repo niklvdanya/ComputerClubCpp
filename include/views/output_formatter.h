@@ -8,12 +8,12 @@ namespace views {
 
 class OutputFormatter {
 public:
-    explicit OutputFormatter(const controllers::ComputerClubController& controller);
+    explicit OutputFormatter(const controllers::IComputerClubController& controller);
     
     void printResults(std::ostream& out) const;
     
 private:
-    const controllers::ComputerClubController& controller_;
+    const controllers::IComputerClubController& controller_;
 };
 
 } // namespace views
