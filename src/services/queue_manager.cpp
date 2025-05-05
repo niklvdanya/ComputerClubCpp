@@ -1,29 +1,36 @@
 #include "services/queue_manager.h"
 
-namespace computer_club {
-namespace services {
+namespace computer_club
+{
+    namespace services
+    {
 
-void QueueManager::addToQueue(const std::string& clientName) {
-    waitingQueue_.push(clientName);
-}
+        void QueueManager::addToQueue(const std::string& clientName)
+        {
+            waitingQueue_.push(clientName);
+        }
 
-std::string QueueManager::getNextInQueue() {
-    if (waitingQueue_.empty()) {
-        return "";
-    }
-    
-    std::string next = waitingQueue_.front();
-    waitingQueue_.pop();
-    return next;
-}
+        std::string QueueManager::getNextInQueue()
+        {
+            if (waitingQueue_.empty())
+            {
+                return "";
+            }
 
-bool QueueManager::isQueueEmpty() const noexcept {
-    return waitingQueue_.empty();
-}
+            std::string next = waitingQueue_.front();
+            waitingQueue_.pop();
+            return next;
+        }
 
-int QueueManager::getQueueSize() const noexcept {
-    return static_cast<int>(waitingQueue_.size());
-}
+        bool QueueManager::isQueueEmpty() const noexcept
+        {
+            return waitingQueue_.empty();
+        }
 
-} // namespace services
-} // namespace computer_club
+        int QueueManager::getQueueSize() const noexcept
+        {
+            return static_cast<int>(waitingQueue_.size());
+        }
+
+    }  // namespace services
+}  // namespace computer_club

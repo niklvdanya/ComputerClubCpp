@@ -2,26 +2,30 @@
 #include <iomanip>
 #include <sstream>
 
-namespace computer_club {
-namespace services {
+namespace computer_club
+{
+    namespace services
+    {
 
-BillingService::BillingService(int hourlyRate) noexcept : hourlyRate_(hourlyRate) {}
+        BillingService::BillingService(int hourlyRate) noexcept : hourlyRate_(hourlyRate) {}
 
-int BillingService::calculateCharge(int minutes) const noexcept {
-    int hoursUsed = (minutes + 59) / 60;
-    return hoursUsed * hourlyRate_;
-}
+        int BillingService::calculateCharge(int minutes) const noexcept
+        {
+            int hoursUsed = (minutes + 59) / 60;
+            return hoursUsed * hourlyRate_;
+        }
 
-std::string BillingService::formatOccupationTime(int minutes) const {
-    int hours = minutes / 60;
-    int mins = minutes % 60;
-    
-    std::ostringstream timeStr;
-    timeStr << std::setfill('0') << std::setw(2) << hours << ":" 
-            << std::setfill('0') << std::setw(2) << mins;
-    
-    return timeStr.str();
-}
+        std::string BillingService::formatOccupationTime(int minutes) const
+        {
+            int hours = minutes / 60;
+            int mins = minutes % 60;
 
-} // namespace services
-} // namespace computer_club
+            std::ostringstream timeStr;
+            timeStr << std::setfill('0') << std::setw(2) << hours << ":" << std::setfill('0')
+                    << std::setw(2) << mins;
+
+            return timeStr.str();
+        }
+
+    }  // namespace services
+}  // namespace computer_club
