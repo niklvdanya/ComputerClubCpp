@@ -8,15 +8,16 @@ namespace models {
 class Client {
 public:
     explicit Client(const std::string& name);
+    explicit Client(std::string&& name) noexcept;
     
-    std::string getName() const;
-    bool isSeated() const;
-    int getTableNumber() const;
-    bool isWaiting() const;
+    std::string getName() const noexcept;
+    bool isSeated() const noexcept;
+    int getTableNumber() const noexcept;
+    bool isWaiting() const noexcept;
     
     void setTable(int tableNumber);
-    void clearTable();
-    void setWaiting(bool waiting);
+    void clearTable() noexcept;
+    void setWaiting(bool waiting) noexcept;
     
 private:
     std::string name_;

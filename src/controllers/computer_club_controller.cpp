@@ -57,11 +57,11 @@ void ComputerClubController::closeClub() {
     }
 }
 
-std::vector<models::Event> ComputerClubController::getEvents() const {
+std::vector<models::Event> ComputerClubController::getEvents() const noexcept {
     return eventManager_->getEvents();
 }
 
-models::ClubConfiguration ComputerClubController::getConfiguration() const {
+models::ClubConfiguration ComputerClubController::getConfiguration() const noexcept {
     return config_;
 }
 
@@ -69,7 +69,7 @@ std::vector<std::shared_ptr<models::Table>> ComputerClubController::getTables() 
     return tableManager_->getAllTables();
 }
 
-bool ComputerClubController::isOpenAt(const models::Time& time) const noexcept{
+bool ComputerClubController::isOpenAt(const models::Time& time) const noexcept {
     return time >= config_.getOpenTime() && time <= config_.getCloseTime();
 }
 

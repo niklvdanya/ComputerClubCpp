@@ -10,11 +10,11 @@ TableManager::TableManager(int tableCount) : tableCount_(tableCount) {
     }
 }
 
-int TableManager::getTableCount() const {
+int TableManager::getTableCount() const noexcept {
     return tableCount_;
 }
 
-bool TableManager::isTableOccupied(int tableNumber) const {
+bool TableManager::isTableOccupied(int tableNumber) const noexcept {
     auto it = tables_.find(tableNumber);
     if (it != tables_.end()) {
         return it->second->isOccupied();
@@ -37,14 +37,14 @@ void TableManager::occupyTable(int tableNumber, const std::string& clientName, c
     }
 }
 
-void TableManager::releaseTable(int tableNumber, const models::Time& time, int hourlyRate) {
+void TableManager::releaseTable(int tableNumber, const models::Time& time, int hourlyRate) noexcept {
     auto table = getTable(tableNumber);
     if (table) {
         table->release(time, hourlyRate);
     }
 }
 
-int TableManager::getAvailableTableCount() const {
+int TableManager::getAvailableTableCount() const noexcept {
     int count = 0;
     for (const auto& pair : tables_) {
         if (!pair.second->isOccupied()) {
@@ -56,6 +56,7 @@ int TableManager::getAvailableTableCount() const {
 
 std::vector<std::shared_ptr<models::Table>> TableManager::getAllTables() const {
     std::vector<std::shared_ptr<models::Table>> result;
+    result.reserve(tables_.size());
     for (const auto& pair : tables_) {
         result.push_back(pair.second);
     }

@@ -11,12 +11,12 @@ namespace services {
 
 class ClientManager {
 public:
-    ClientManager();
+    ClientManager() = default;
     
-    bool hasClient(const std::string& clientName) const;
+    bool hasClient(const std::string& clientName) const noexcept;
     std::shared_ptr<models::Client> getClient(const std::string& clientName);
     void addClient(const std::string& clientName);
-    void removeClient(const std::string& clientName);
+    void removeClient(const std::string& clientName) noexcept;
     
     std::vector<std::string> getClientNames() const;
     

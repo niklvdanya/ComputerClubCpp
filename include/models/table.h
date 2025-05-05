@@ -8,17 +8,18 @@ namespace models {
 
 class Table {
 public:
-    explicit Table(int number);
+    explicit Table(int number) noexcept;
     
-    int getNumber() const;
-    bool isOccupied() const;
-    std::string getClientName() const;
-    Time getOccupiedSince() const;
-    int getTotalMinutes() const;
-    int getRevenue() const;
+    int getNumber() const noexcept;
+    bool isOccupied() const noexcept;
+    std::string getClientName() const noexcept;
+    Time getOccupiedSince() const noexcept;
+    int getTotalMinutes() const noexcept;
+    int getRevenue() const noexcept;
     
     void occupy(const std::string& clientName, const Time& time);
-    void release(const Time& time, int hourlyRate);
+    void occupy(std::string&& clientName, const Time& time) noexcept;
+    void release(const Time& time, int hourlyRate) noexcept;
     
 private:
     int number_;

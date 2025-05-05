@@ -5,9 +5,9 @@
 namespace computer_club {
 namespace models {
 
-Time::Time() : hours_(0), minutes_(0) {}
+Time::Time() noexcept : hours_(0), minutes_(0) {}
 
-Time::Time(int hours, int minutes) : hours_(hours), minutes_(minutes) {}
+Time::Time(int hours, int minutes) noexcept : hours_(hours), minutes_(minutes) {}
 
 Time Time::parse(const std::string& timeStr) {
     Time time;
@@ -36,30 +36,30 @@ std::string Time::toString() const {
     return oss.str();
 }
 
-bool Time::operator<(const Time& other) const noexcept{
+bool Time::operator<(const Time& other) const noexcept {
     if (hours_ != other.hours_) {
         return hours_ < other.hours_;
     }
     return minutes_ < other.minutes_;
 }
 
-bool Time::operator==(const Time& other) const noexcept{
+bool Time::operator==(const Time& other) const noexcept {
     return hours_ == other.hours_ && minutes_ == other.minutes_;
 }
 
-bool Time::operator<=(const Time& other) const noexcept{
+bool Time::operator<=(const Time& other) const noexcept {
     return *this < other || *this == other;
 }
 
-bool Time::operator>=(const Time& other) const noexcept{
+bool Time::operator>=(const Time& other) const noexcept {
     return !(*this < other);
 }
 
-int Time::diffInMinutes(const Time& other) const{
+int Time::diffInMinutes(const Time& other) const noexcept {
     return (hours_ - other.hours_) * 60 + (minutes_ - other.minutes_);
 }
 
-Time Time::addMinutes(int mins) const {
+Time Time::addMinutes(int mins) const noexcept {
     Time newTime = *this;
     newTime.minutes_ += mins;
     

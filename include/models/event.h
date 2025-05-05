@@ -19,15 +19,16 @@ enum class EventType {
 class Event {
 public:
     Event(const Time& time, EventType type, const std::string& clientName, int tableNumber = 0, const std::string& error = "");
+    Event(const Time& time, EventType type, std::string&& clientName, int tableNumber = 0, std::string&& error = "") noexcept;
     
-    Time getTime() const;
-    EventType getType() const;
-    std::string getClientName() const;
-    int getTableNumber() const;
-    std::string getError() const;
+    Time getTime() const noexcept;
+    EventType getType() const noexcept;
+    std::string getClientName() const noexcept;
+    int getTableNumber() const noexcept;
+    std::string getError() const noexcept;
     
     std::string toString() const;
-    int getEventIdFromType() const;
+    int getEventIdFromType() const noexcept;
     
 private:
     Time time_;

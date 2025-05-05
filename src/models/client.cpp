@@ -6,19 +6,22 @@ namespace models {
 Client::Client(const std::string& name) 
     : name_(name), seated_(false), tableNumber_(0), waiting_(false) {}
 
-std::string Client::getName() const {
+Client::Client(std::string&& name) noexcept
+    : name_(std::move(name)), seated_(false), tableNumber_(0), waiting_(false) {}
+
+std::string Client::getName() const noexcept {
     return name_;
 }
 
-bool Client::isSeated() const {
+bool Client::isSeated() const noexcept {
     return seated_;
 }
 
-int Client::getTableNumber() const {
+int Client::getTableNumber() const noexcept {
     return tableNumber_;
 }
 
-bool Client::isWaiting() const {
+bool Client::isWaiting() const noexcept {
     return waiting_;
 }
 
@@ -28,12 +31,12 @@ void Client::setTable(int tableNumber) {
     waiting_ = false;
 }
 
-void Client::clearTable() {
+void Client::clearTable() noexcept {
     tableNumber_ = 0;
     seated_ = false;
 }
 
-void Client::setWaiting(bool waiting) {
+void Client::setWaiting(bool waiting) noexcept {
     waiting_ = waiting;
     if (waiting) {
         clearTable();

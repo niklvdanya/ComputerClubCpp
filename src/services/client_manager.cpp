@@ -4,9 +4,7 @@
 namespace computer_club {
 namespace services {
 
-ClientManager::ClientManager() {}
-
-bool ClientManager::hasClient(const std::string& clientName) const {
+bool ClientManager::hasClient(const std::string& clientName) const noexcept {
     return clients_.find(clientName) != clients_.end();
 }
 
@@ -24,12 +22,13 @@ void ClientManager::addClient(const std::string& clientName) {
     }
 }
 
-void ClientManager::removeClient(const std::string& clientName) {
+void ClientManager::removeClient(const std::string& clientName) noexcept {
     clients_.erase(clientName);
 }
 
 std::vector<std::string> ClientManager::getClientNames() const {
     std::vector<std::string> names;
+    names.reserve(clients_.size());
     for (const auto& pair : clients_) {
         names.push_back(pair.first);
     }

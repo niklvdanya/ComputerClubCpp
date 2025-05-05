@@ -7,27 +7,30 @@ namespace models {
 Event::Event(const Time& time, EventType type, const std::string& clientName, int tableNumber, const std::string& error)
     : time_(time), type_(type), clientName_(clientName), tableNumber_(tableNumber), error_(error) {}
 
-Time Event::getTime() const {
+Event::Event(const Time& time, EventType type, std::string&& clientName, int tableNumber, std::string&& error) noexcept
+    : time_(time), type_(type), clientName_(std::move(clientName)), tableNumber_(tableNumber), error_(std::move(error)) {}
+
+Time Event::getTime() const noexcept {
     return time_;
 }
 
-EventType Event::getType() const {
+EventType Event::getType() const noexcept {
     return type_;
 }
 
-std::string Event::getClientName() const {
+std::string Event::getClientName() const noexcept {
     return clientName_;
 }
 
-int Event::getTableNumber() const {
+int Event::getTableNumber() const noexcept {
     return tableNumber_;
 }
 
-std::string Event::getError() const {
+std::string Event::getError() const noexcept {
     return error_;
 }
 
-int Event::getEventIdFromType() const {
+int Event::getEventIdFromType() const noexcept {
     return static_cast<int>(type_);
 }
 

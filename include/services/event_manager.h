@@ -8,10 +8,10 @@ namespace services {
 
 class EventManager {
 public:
-    EventManager();
+    EventManager() = default;
     
     void addEvent(const models::Event& event);
-    const std::vector<models::Event>& getEvents() const;
+    const std::vector<models::Event>& getEvents() const noexcept;
     
 private:
     std::vector<models::Event> events_;

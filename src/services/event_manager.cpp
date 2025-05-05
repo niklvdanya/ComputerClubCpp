@@ -3,13 +3,11 @@
 namespace computer_club {
 namespace services {
 
-EventManager::EventManager() {}
-
 void EventManager::addEvent(const models::Event& event) {
     events_.push_back(event);
 }
 
-const std::vector<models::Event>& EventManager::getEvents() const {
+const std::vector<models::Event>& EventManager::getEvents() const noexcept {
     return events_;
 }
 

@@ -5,9 +5,9 @@
 namespace computer_club {
 namespace services {
 
-BillingService::BillingService(int hourlyRate) : hourlyRate_(hourlyRate) {}
+BillingService::BillingService(int hourlyRate) noexcept : hourlyRate_(hourlyRate) {}
 
-int BillingService::calculateCharge(int minutes) const {
+int BillingService::calculateCharge(int minutes) const noexcept {
     int hoursUsed = (minutes + 59) / 60;
     return hoursUsed * hourlyRate_;
 }

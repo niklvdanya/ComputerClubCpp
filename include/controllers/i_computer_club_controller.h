@@ -17,8 +17,8 @@ public:
     virtual void processEvent(const models::Event& event) = 0;
     virtual void closeClub() = 0;
     
-    virtual std::vector<models::Event> getEvents() const = 0;
-    virtual models::ClubConfiguration getConfiguration() const = 0;
+    virtual std::vector<models::Event> getEvents() const noexcept = 0;
+    virtual models::ClubConfiguration getConfiguration() const noexcept = 0;
     virtual std::vector<std::shared_ptr<models::Table>> getTables() const = 0;
 };
 

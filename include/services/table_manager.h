@@ -12,14 +12,14 @@ class TableManager {
 public:
     explicit TableManager(int tableCount);
     
-    int getTableCount() const;
-    bool isTableOccupied(int tableNumber) const;
+    int getTableCount() const noexcept;
+    bool isTableOccupied(int tableNumber) const noexcept;
     std::shared_ptr<models::Table> getTable(int tableNumber);
     
     void occupyTable(int tableNumber, const std::string& clientName, const models::Time& time);
-    void releaseTable(int tableNumber, const models::Time& time, int hourlyRate);
+    void releaseTable(int tableNumber, const models::Time& time, int hourlyRate) noexcept;
     
-    int getAvailableTableCount() const;
+    int getAvailableTableCount() const noexcept;
     std::vector<std::shared_ptr<models::Table>> getAllTables() const;
     
 private:

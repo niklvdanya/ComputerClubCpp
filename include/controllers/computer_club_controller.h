@@ -19,15 +19,15 @@ public:
 
     ComputerClubController(const ComputerClubController&) = delete;
     ComputerClubController& operator=(const ComputerClubController&) = delete;
-    ComputerClubController(ComputerClubController&&) = default;
-    ComputerClubController& operator=(ComputerClubController&&) = default;
+    ComputerClubController(ComputerClubController&&) noexcept = default;
+    ComputerClubController& operator=(ComputerClubController&&) noexcept = default;
     
     void processEvents(const std::vector<models::Event>& inputEvents) override;
     void processEvent(const models::Event& event) override;
     void closeClub() override;
     
-    std::vector<models::Event> getEvents() const override;
-    models::ClubConfiguration getConfiguration() const override;
+    std::vector<models::Event> getEvents() const noexcept override;
+    models::ClubConfiguration getConfiguration() const noexcept override;
     std::vector<std::shared_ptr<models::Table>> getTables() const override;
     
 private:

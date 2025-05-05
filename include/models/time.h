@@ -8,8 +8,8 @@ namespace models {
 
 class Time {
 public:
-    Time();
-    Time(int hours, int minutes);
+    Time() noexcept;
+    Time(int hours, int minutes) noexcept;
     
     static Time parse(const std::string& timeStr);
     
@@ -20,8 +20,8 @@ public:
     bool operator<=(const Time& other) const noexcept;
     bool operator>=(const Time& other) const noexcept;
     
-    int diffInMinutes(const Time& other) const;
-    Time addMinutes(int mins) const;
+    int diffInMinutes(const Time& other) const noexcept;
+    Time addMinutes(int mins) const noexcept;
     
 private:
     int hours_;

@@ -9,10 +9,10 @@ class ClubConfiguration {
 public:
     ClubConfiguration(int tableCount, const Time& openTime, const Time& closeTime, int hourlyRate);
     
-    int getTableCount() const;
-    Time getOpenTime() const;
-    Time getCloseTime() const;
-    int getHourlyRate() const;
+    int getTableCount() const noexcept;
+    Time getOpenTime() const noexcept;
+    Time getCloseTime() const noexcept;
+    int getHourlyRate() const noexcept;
     
 private:
     int tableCount_;
